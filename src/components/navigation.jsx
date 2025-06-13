@@ -1,4 +1,7 @@
+"use client";
+
 import { Link } from "react-router-dom";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -28,7 +31,7 @@ export function Navigation() {
     <nav className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="font-bold text-xl">
+          <Link href="/" className="font-bold text-xl">
             DummyJSON Hub
           </Link>
 
@@ -37,7 +40,7 @@ export function Navigation() {
             {navItems.map((item) => (
               <Link
                 key={item.href}
-                to={item.href}
+                href={item.href}
                 className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
               >
                 <item.icon className="h-4 w-4" />
@@ -58,7 +61,7 @@ export function Navigation() {
                 {navItems.map((item) => (
                   <Link
                     key={item.href}
-                    to={item.href}
+                    href={item.href}
                     className="flex items-center gap-3 text-lg font-medium hover:text-primary transition-colors"
                     onClick={() => setIsOpen(false)}
                   >

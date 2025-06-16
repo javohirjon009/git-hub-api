@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ShoppingCart, Package, DollarSign, User } from "lucide-react";
 
@@ -38,7 +37,7 @@ export default function CartsPage() {
       const data = await response.json();
       setUsers(data.users);
     } catch (error) {
-      console.error("Error fetching users:", error);
+      console.error("Xatolik:", error);
     } finally {
       setLoading(false);
     }
@@ -47,12 +46,6 @@ export default function CartsPage() {
   const getUserById = (userId) => {
     return users.find((user) => user.id === userId);
   };
-
-  const totalRevenue = carts.reduce(
-    (sum, cart) => sum + cart.discountedTotal,
-    0
-  );
-  const totalItems = carts.reduce((sum, cart) => sum + cart.totalQuantity, 0);
 
   if (loading) {
     return (
@@ -91,62 +84,6 @@ export default function CartsPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">Shopping Carts</h1>
-
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2">
-                <ShoppingCart className="h-5 w-5 text-blue-600" />
-                <div>
-                  <div className="text-2xl font-bold">{carts.length}</div>
-                  <div className="text-sm text-gray-600">Total Carts</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2">
-                <Package className="h-5 w-5 text-green-600" />
-                <div>
-                  <div className="text-2xl font-bold">{totalItems}</div>
-                  <div className="text-sm text-gray-600">Total Items</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2">
-                <DollarSign className="h-5 w-5 text-purple-600" />
-                <div>
-                  <div className="text-2xl font-bold">
-                    ${totalRevenue.toFixed(2)}
-                  </div>
-                  <div className="text-sm text-gray-600">Total Revenue</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2">
-                <User className="h-5 w-5 text-orange-600" />
-                <div>
-                  <div className="text-2xl font-bold">
-                    {new Set(carts.map((c) => c.userId)).size}
-                  </div>
-                  <div className="text-sm text-gray-600">Unique Users</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
       <div className="space-y-6">
         {carts.map((cart) => {
           const user = getUserById(cart.userId);
@@ -194,19 +131,6 @@ export default function CartsPage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="flex gap-4 mb-4">
-                  <Badge variant="outline">{cart.totalProducts} products</Badge>
-                  <Badge variant="outline">{cart.totalQuantity} items</Badge>
-                  {savings > 0 && (
-                    <Badge
-                      variant="secondary"
-                      className="bg-green-100 text-green-800"
-                    >
-                      {((savings / cart.total) * 100).toFixed(1)}% off
-                    </Badge>
-                  )}
-                </div>
-
                 <div className="space-y-3">
                   {cart.products.map((product) => (
                     <div
@@ -220,19 +144,6 @@ export default function CartsPage() {
                       />
                       <div className="flex-1">
                         <h4 className="font-medium text-sm">{product.title}</h4>
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                          <span>Qty: {product.quantity}</span>
-                          <span>•</span>
-                          <span>${product.price.toFixed(2)} each</span>
-                          {product.discountPercentage > 0 && (
-                            <>
-                              <span>•</span>
-                              <span className="text-green-600">
-                                {product.discountPercentage.toFixed(1)}% off
-                              </span>
-                            </>
-                          )}
-                        </div>
                       </div>
                       <div className="text-right">
                         <div className="font-semibold">

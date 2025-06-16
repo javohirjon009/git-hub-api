@@ -9,9 +9,8 @@ import {
   CardTitle,
 } from "../components/ui/Card";
 import { Button } from "../components/ui/Button";
-import { Input } from "../components/ui/Input";
 import { Badge } from "../components/ui/Badge";
-import { Star, Search, ShoppingCart } from "lucide-react";
+import { Star, ShoppingCart } from "lucide-react";
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -80,35 +79,9 @@ export default function ProductsPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">Products</h1>
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-            <Input
-              placeholder="Search products..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-3 py-2 border rounded-md"
-          >
-            <option value="all">All Categories</option>
-            {categories.map((category) => (
-              <option key={category} value={category}>
-                {typeof category === "string"
-                  ? category.charAt(0).toUpperCase() + category.slice(1)
-                  : category}
-              </option>
-            ))}
-          </select>
-        </div>
+      <div>
+        <h1 className="text-4xl mb-5">Products</h1>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {filteredProducts.map((product) => (
           <Card key={product.id} className="hover:shadow-lg transition-shadow">
@@ -118,11 +91,6 @@ export default function ProductsPage() {
                 alt={product.title}
                 className="object-cover w-full h-full"
               />
-              {product.discountPercentage > 0 && (
-                <Badge className="absolute top-2 right-2 bg-red-500">
-                  -{Math.round(product.discountPercentage)}%
-                </Badge>
-              )}
             </div>
             <CardHeader>
               <CardTitle className="line-clamp-2">{product.title}</CardTitle>

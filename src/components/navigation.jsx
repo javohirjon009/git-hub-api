@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/Button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   Menu,
@@ -35,7 +35,6 @@ export function Navigation() {
             DummyJSON Hub
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <Link
@@ -49,7 +48,6 @@ export function Navigation() {
             ))}
           </div>
 
-          {/* Mobile Navigation */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
               <Button variant="ghost" size="icon">

@@ -25,7 +25,7 @@ export default function QuotesPage() {
       const data = await response.json();
       setQuotes(data.quotes);
     } catch (error) {
-      console.error("Error fetching quotes:", error);
+      console.error("xatoliok:", error);
     } finally {
       setLoading(false);
     }
@@ -97,56 +97,6 @@ export default function QuotesPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">Quotes</h1>
-
-        {/* Random Quote of the Day */}
-        {randomQuote && (
-          <Card className="mb-6 bg-gradient-to-r from-purple-50 to-blue-50 border-purple-200">
-            <CardContent className="p-8">
-              <div className="flex items-start gap-4">
-                <Quote className="h-8 w-8 text-purple-600 flex-shrink-0 mt-1" />
-                <div>
-                  <blockquote className="text-xl font-medium text-gray-900 mb-3">
-                    "{randomQuote.quote}"
-                  </blockquote>
-                  <cite className="text-purple-600 font-semibold">
-                    — {randomQuote.author}
-                  </cite>
-                  <div className="flex items-center gap-2 mt-4">
-                    <Badge variant="secondary">Quote of the Day</Badge>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={fetchRandomQuote}
-                      className="text-purple-600 hover:text-purple-700"
-                    >
-                      <Shuffle className="h-4 w-4 mr-1" />
-                      New Quote
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-            <Input
-              placeholder="Search quotes or authors..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-          <Badge variant="outline" className="self-start">
-            {filteredQuotes.length} quotes from {authors.length} authors
-          </Badge>
-        </div>
-      </div>
-
       <div className="space-y-8">
         {authors.map((author) => (
           <div key={author}>

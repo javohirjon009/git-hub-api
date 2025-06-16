@@ -90,19 +90,6 @@ export default function PostsPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">Posts</h1>
-        <div className="relative max-w-md">
-          <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-          <Input
-            placeholder="Search posts..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10"
-          />
-        </div>
-      </div>
-
       <div className="space-y-6">
         {filteredPosts.map((post) => {
           const author = getUserById(post.userId);
@@ -151,7 +138,7 @@ export default function PostsPage() {
 
                 <div className="flex items-center gap-6 text-sm text-gray-600">
                   <div className="flex items-center gap-1">
-                    <Heart className="h-4 w-4" />
+                    <Heart className="h-4 w-4 hover:text-red-600 cursor-pointer" />
                     <span>{post.reactions.likes}</span>
                   </div>
                   <div className="flex items-center gap-1">

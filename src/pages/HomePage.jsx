@@ -64,7 +64,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50">
-      {/* Hero Section */}
       <section className="relative py-20 px-4">
         <div className="container mx-auto text-center">
           <div className="mb-8">
@@ -94,7 +93,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features Grid */}
       <section className="py-16 px-4">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">
@@ -125,7 +123,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section className="py-16 px-4 bg-white">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
